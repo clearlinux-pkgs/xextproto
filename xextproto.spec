@@ -4,7 +4,7 @@
 #
 Name     : xextproto
 Version  : 7.3.0
-Release  : 3
+Release  : 4
 URL      : http://xorg.freedesktop.org/releases/individual/proto/xextproto-7.3.0.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/xextproto-7.3.0.tar.gz
 Summary  : XExt extension headers
