@@ -4,7 +4,7 @@
 #
 Name     : xextproto
 Version  : 7.3.0
-Release  : 6
+Release  : 7
 URL      : http://xorg.freedesktop.org/releases/individual/proto/xextproto-7.3.0.tar.gz
 Source0  : http://xorg.freedesktop.org/releases/individual/proto/xextproto-7.3.0.tar.gz
 Summary  : XExt extension headers
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : MIT-Opengroup
 Requires: xextproto-doc
 BuildRequires : libxslt-bin
+BuildRequires : pkgconfig(xorg-macros)
 BuildRequires : xmlto
 
 %description
@@ -35,6 +36,7 @@ XTEST
 %package dev
 Summary: dev components for the xextproto package.
 Group: Development
+Provides: xextproto-devel
 
 %description dev
 dev components for the xextproto package.
@@ -52,10 +54,15 @@ doc components for the xextproto package.
 %setup -q -n xextproto-7.3.0
 
 %build
+export LANG=C
 %configure --disable-static
-make V=1 %{?_smp_mflags}
+make V=1  %{?_smp_mflags}
 
 %check
+export LANG=C
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
@@ -100,7 +107,7 @@ rm -rf %{buildroot}
 /usr/include/X11/extensions/xtestext1const.h
 /usr/include/X11/extensions/xtestext1proto.h
 /usr/include/X11/extensions/xtestproto.h
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/pkgconfig/xextproto.pc
 
 %files doc
 %defattr(-,root,root,-)
